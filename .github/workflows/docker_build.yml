@@ -13,13 +13,6 @@ on:
       docker_registry:
         required: true
         type: string
-      docker_username:
-        required: true
-        type: string
-
-    secrets:
-      docker_password:
-        required: true
 
 jobs:
   build-and-push:
