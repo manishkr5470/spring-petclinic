@@ -23,5 +23,5 @@ jobs:
         uses: azure/docker-login@v1
         with:
           login-server: ${{ inputs.dockerRegistryServiceConnection }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
+          username: manishkr
+          password: InPuepYJgi0dOVWU656fdedt8sirs+Y1NPwb3aw/qw+ACRDgLO5c
