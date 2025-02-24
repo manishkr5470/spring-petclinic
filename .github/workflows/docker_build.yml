@@ -30,7 +30,6 @@ jobs:
       IMAGE_NAME: ${{ inputs.image_name }}
       IMAGE_TAG: ${{ inputs.image_tag }}
       DOCKER_REGISTRY: ${{ inputs.docker_registry }}
-      DOCKER_USERNAME: ${{ inputs.docker_username }}
 
     steps:
       - name: Checkout Repository
@@ -38,7 +37,7 @@ jobs:
 
       - name: Log in to Docker Registry
         run: |
-          echo "${{ secrets.docker_password }}" | docker login $DOCKER_REGISTRY -u "$DOCKER_USERNAME" --password-stdin
+          echo "InPuepYJgi0dOVWU656fdedt8sirs+Y1NPwb3aw/qw+ACRDgLO5c" | docker login $DOCKER_REGISTRY -u "manishkr" --password-stdin
 
       - name: Build Docker Image
         run: |
