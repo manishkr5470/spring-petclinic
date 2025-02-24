@@ -9,9 +9,6 @@ on:
       branch:
         required: true
         type: string
-    secrets:
-      PAT:
-        required: true
 
 jobs:
   clone-repo:
@@ -22,6 +19,7 @@ jobs:
       - name: Checkout Repository
         run: |
           echo "Cloning repository from ${{ inputs.repo_url }} branch ${{ inputs.branch }}"
-          git clone --branch ${{ inputs.branch }} https://${{ secrets.PAT }}@github.com/${{ inputs.repo_url }} cloned-repo
+          git clone --branch ${{ inputs.branch }} ${{ inputs.repo_url }} cloned-repo
+
       - name: List Cloned Repository Files
         run: ls -la cloned-repo
