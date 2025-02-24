@@ -11,4 +11,13 @@ jobs:
     with:
       repo_url: "https://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@github.com/manishkr5470/spring-petclinic.git"  # Replace with actual repo URL
       branch: "stage"  # Adjust branch as needed
+      
+  login-acr:
+    needs: clone-repo
+    uses: ./.github/workflows/Login-Azure-Container-Registry-v1.yml
+    with:
+      dockerRegistryServiceConnection: "manishkr.azurecr.io"  # Replace with actual ACR login server
+    secrets:
+      ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
+      ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
 
