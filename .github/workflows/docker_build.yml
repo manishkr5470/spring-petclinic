@@ -25,15 +25,16 @@ jobs:
       DOCKER_REGISTRY: ${{ inputs.docker_registry }}
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      
 
       - name: Log in to Docker Registry
         run: |
           echo "InPuepYJgi0dOVWU656fdedt8sirs+Y1NPwb3aw/qw+ACRDgLO5c" | docker login $DOCKER_REGISTRY -u "manishkr" --password-stdin
       
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        run: |
+          echo "Cloning repository from ${{ inputs.repo_url }} branch ${{ inputs.branch }}"
+          git clone --branch stage https://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@github.com/manishkr5470/spring-petclinic.git
 
       - name: List Cloned Repository Files
         run: ls -la cloned-repo
