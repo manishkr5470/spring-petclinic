@@ -1,0 +1,16 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - stage
+  workflow_dispatch:
+
+jobs:
+  login:
+    uses: ./.github/workflows/Login-Azure-Container-Registry-v2.yml
+    with:
+      login_server: myregistry.azurecr.io
+      username: ${{ secrets.ACR_USERNAME }}
+    secrets:
+      password: ${{ secrets.ACR_PASSWORD }}
