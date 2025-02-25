@@ -3,56 +3,27 @@ name: Login to Azure Container Registry
 on:
   workflow_call:
     inputs:
-      registry:
-        description: 'Azure Container Registry Name'
+      login_server:
+        description: 'Azure Container Registry Login Server'
         required: true
         type: string
-      client_id:
-        description: 'Azure Service Principal Client ID'
-        required: true
-        type: string
-      tenant_id:
-        description: 'Azure Tenant ID'
+      username:
+        description: 'Azure Container Registry Username'
         required: true
         type: string
     secrets:
-      client_secret:
-        description: 'Azure Service Principal Client Secret'
+      password:
+        description: 'Azure Container Registry Password'
         required: true
 
 jobs:
   login-acr:
     runs-on: ubuntu-latest
     steps:
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ inputs.client_id }}
-          tenant-id: ${{ inputs.tenant_id }}
-          client-secret: ${{ secrets.client_secret }}
-
       - name: Login to Azure Container Registry
         run: |
-          az acr login --name ${{ inputs.registry }}
+          echo "${{ secrets.password }}" | docker login ${{ inputs.login_server }} -u ${{ inputs.username }} --password-stdin
 
       - name: Verify Login
         run: |
-          az acr repository list --name ${{ inputs.registry }} --output table
-
-# main.yml to call the reusable workflow
-name: Main Workflow
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  login:
-    uses: ./.github/workflows/Login-Azure-Container-Registry-v1.yml
-    with:
-      registry: myacr
-      client_id: ${{ secrets.AZURE_CLIENT_ID }}
-      tenant_id: ${{ secrets.AZURE_TENANT_ID }}
-    secrets:
-      client_secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          docker info
