@@ -3,7 +3,7 @@ name: Main Workflow
 on:
   push:
     branches:
-      - stage
+      - NA
   workflow_dispatch:
 
 jobs:
