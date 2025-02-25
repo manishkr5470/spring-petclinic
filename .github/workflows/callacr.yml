@@ -10,7 +10,7 @@ jobs:
   login:
     uses: ./.github/workflows/Login-Azure-Container-Registry-v2.yml
     with:
-      login_server: myregistry.azurecr.io
+      login_server: manishkr.azurecr.io
       username: ${{ secrets.ACR_USERNAME }}
     secrets:
       password: ${{ secrets.ACR_PASSWORD }}
