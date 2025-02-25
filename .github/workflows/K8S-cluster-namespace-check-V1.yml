@@ -1,0 +1,37 @@
+name: Resubale Verify Kubernetes Namespace Existence
+
+on:
+  workflow_call:
+    inputs:
+      azureResourceGroup:
+        required: true
+        type: string
+      kubernetesCluster:
+        required: true
+        type: string
+      kubernetesNamespace:
+        required: true
+        type: string
+      azureSubscription:
+        required: true
+        type: string
+
+jobs:
+  verify-namespace:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Verify the Kubernetes Namespace Existence
+        run: |
+          az aks get-credentials --resource-group ${{ inputs.azureResourceGroup }} --name ${{ inputs.kubernetesCluster }}
+          NAMESPACE_EXISTS=$(kubectl get namespace ${{ inputs.kubernetesNamespace }} --ignore-not-found=false -o jsonpath='{.metadata.name}' || echo "not_found")
+          if [[ "$NAMESPACE_EXISTS" != "${{ inputs.kubernetesNamespace }}" ]]; then
+            echo "Error: Namespace '${{ inputs.kubernetesNamespace }}' does not exist. Aborting deployment."
+            exit 1
+          else
+            echo "Namespace '${{ inputs.kubernetesNamespace }}' verified successfully."
+          fi
