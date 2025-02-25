@@ -1,16 +1,14 @@
-name: login acr
+name: Main Workflow
 
 on:
   push:
     branches:
       - stage
+  workflow_dispatch:
 
 jobs:
-  login-acr:
-    runs-on: ubuntu-latest
+  login:
+    uses: ./.github/workflows/Login-Azure-Container-Registry-v2.yml
+    with:
+      login_server: manishkr.azurecr.io
 
-    steps:
-    - name: Login to ACR
-      uses: ./.github/workflows/Login-Azure-Container-Registry-v2.yml
-      with:
-        login_server: manishkr.azurecr.io
