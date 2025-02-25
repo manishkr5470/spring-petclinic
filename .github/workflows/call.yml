@@ -1,0 +1,14 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - stage
+  workflow_dispatch:
+
+jobs:
+  login:
+    uses: ./.github/workflows/java-maven-build-v1.yml
+
+    
+
