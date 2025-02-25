@@ -31,6 +31,9 @@ jobs:
       - name: Log in to Docker Registry
         run: |
           echo "InPuepYJgi0dOVWU656fdedt8sirs+Y1NPwb3aw/qw+ACRDgLO5c" | docker login $DOCKER_REGISTRY -u "manishkr" --password-stdin
+      
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Build Docker Image
         run: |
