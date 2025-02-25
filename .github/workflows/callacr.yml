@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: login acr
 
 on:
   push:
@@ -6,16 +6,14 @@ on:
       - stage
 
 jobs:
-  build-and-push:
+  login-acr:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Log in to ACR
-      uses: azure/docker-login@v1
+    - name: Login to ACR
+      uses: ./.github/workflows/Login-Azure-Container-Registry-v2.yml
       with:
-        login-server: <your-acr-login-server>
-        username: ${{ secrets.ACR_USERNAME }}
-        password: ${{ secrets.ACR_PASSWORD }}
+        login_server: manishkr.azurecr.io
