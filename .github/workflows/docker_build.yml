@@ -37,7 +37,7 @@ jobs:
           git clone --branch stage https://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@github.com/manishkr5470/spring-petclinic.git
 
       - name: List Cloned Repository Files
-        run: ls -la cloned-repo
+        run: ls -la
 
       - name: Build Docker Image
         run: |
