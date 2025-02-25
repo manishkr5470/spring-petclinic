@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
     - name: Login to ACR
       uses: ./.github/workflows/Login-Azure-Container-Registry-v2.yml
       with:
