@@ -1,0 +1,17 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - stage
+  workflow_dispatch:
+
+jobs:
+  verify-namespace:
+    uses: ./.github/workflows/K8S-cluster-namespace-check-V1.yml
+
+    with:
+      azureResourceGroup: "petclinic-rg"
+      kubernetesCluster: "petclinic-aks"
+      kubernetesNamespace: "default"
+      azureSubscription: "petclinic-aks"
