@@ -7,7 +7,7 @@ on:
 
 jobs:
   clone-repo:
-    uses: ./.github/workflows/clone-repo.yml
+    uses: ./.centralworkflow/.github/workflows/clone-repo.yml
     with:
       repo_url: "https://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@github.com/manishkr5470/spring-petclinic.git"  # Replace with actual repo URL
       branch: "stage"  # Adjust branch as needed
