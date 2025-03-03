@@ -17,8 +17,9 @@ jobs:
     uses: ./.github/workflows/Login-Azure-Container-Registry-v2.yml
     with:
       dockerRegistryServiceConnection: "manishkr.azurecr.io"  # Replace with actual ACR login server
-      acr_password: ${{ secrets.ACR_PASSWORD }}
-      acr_username: ${{ secrets.ACR_USERNAME }}
+    secrets:
+      ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+      ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
 
   build-and-push:
     needs: login-acr
