@@ -3,7 +3,7 @@ name: Login to Azure Container Registry
 on:
   workflow_call:
     inputs:
-      login_server:
+      dockerRegistryServiceConnection:
         description: 'Azure Container Registry Login Server'
         required: true
         type: string
