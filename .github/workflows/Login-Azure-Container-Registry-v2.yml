@@ -7,15 +7,16 @@ on:
         description: 'Azure Container Registry Login Server'
         required: true
         type: string
+    secrets: 
       acr_password:
         description: 'Azure Container Registry Password'
         required: true
-        type: string
+ 
         
       acr_username:
-        description: 'Azure Container Registry Password'
+        description: 'Azure Container Registry Username'
         required: true
-        type: string
+  
       
         
 
@@ -26,7 +27,7 @@ jobs:
     steps:
       - name: Login to Azure Container Registry
         run: |
-          echo "${{  inputs.acr_password }}" | docker login ${{ inputs.dockerRegistryServiceConnection }} -u ${{  secrets.acr_username }} --password-stdin
+          echo "${{  secrets.acr_password }}" | docker login ${{ inputs.dockerRegistryServiceConnection }} -u ${{  secrets.acr_username }} --password-stdin
 
       - name: Verify Login
         run: |
