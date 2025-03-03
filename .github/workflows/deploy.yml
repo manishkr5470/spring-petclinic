@@ -3,7 +3,7 @@ name: Deploy to Azure Container Registry
 on:
   push:
     branches:
-      - NA  # Adjust the branch as needed
+      - stage
 
 jobs:
   clone-repo:
