@@ -4,12 +4,6 @@ on:
   push:
     branches:
       - stage
-  workflow_dispatch:
-    inputs:
-      login_server:
-        description: 'manishkr.azurecr.io'
-        required: true
-        type: string
 
 jobs:
   login-acr:
