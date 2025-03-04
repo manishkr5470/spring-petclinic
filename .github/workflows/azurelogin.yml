@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Azure CLI
-        uses: azure/setup-azurecli@v1
+        uses: azure/setup-azurecli@latest
 
       - name: Log in to Azure
         uses: azure/login@v1
