@@ -28,5 +28,8 @@ jobs:
       image_name: "spring"  # Replace with your image name
       image_tag: "latest"
       docker_registry: "manishkr.azurecr.io"  # Replace with actual ACR login server
+    secrets:
+      ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+      ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
 
 
