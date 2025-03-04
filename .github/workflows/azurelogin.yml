@@ -3,7 +3,7 @@ name: Azure Login
 on:
   push:
     branches:
-      - NA
+      - stage
 
 jobs:
   login-to-azure:
