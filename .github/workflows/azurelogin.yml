@@ -1,16 +1,20 @@
-name: Azure Login
 
-on: 
+# File: .github/workflows/workflow.yml
+
+on:
   workflow_dispatch:
 
+name: AzureLoginSample
+
 jobs:
-  login:
+
+  build-and-deploy-latest:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Log in to Azure
-      uses: azure/login@v1
+    
+    - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - run: |
+        az webapp list --query "[?state=='Running']"
