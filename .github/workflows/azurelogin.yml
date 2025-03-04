@@ -1,4 +1,4 @@
-name: Azure Login
+name: Azure Login and Deploy
 
 on:
   push:
@@ -6,19 +6,24 @@ on:
       - stage
 
 jobs:
-  login-to-azure:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Log in to Azure
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Set up Azure CLI
+        uses: azure/setup-azurecli@v1
 
-    # Add additional steps here that require Azure login
-    - name: Azure CLI example
-      run: |
-        az account show
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+
+      - name: Verify Azure login
+        run: az account show
+
+
