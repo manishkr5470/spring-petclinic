@@ -13,6 +13,11 @@ on:
       docker_registry:
         required: true
         type: string
+    secrets:
+      ACR_PASSWORD:
+        required: true
+      ACR_USERNAME:
+        required: true
 
 jobs:
   build-and-push:
@@ -23,13 +28,15 @@ jobs:
       IMAGE_NAME: ${{ inputs.image_name }}
       IMAGE_TAG: ${{ inputs.image_tag }}
       DOCKER_REGISTRY: ${{ inputs.docker_registry }}
+      
+ 
 
     steps:
       
 
       - name: Log in to Docker Registry
         run: |
-          echo "InPuepYJgi0dOVWU656fdedt8sirs+Y1NPwb3aw/qw+ACRDgLO5c" | docker login $DOCKER_REGISTRY -u "manishkr" --password-stdin
+          echo "${{ secrets.ACR_PASSWORD }}" | docker login $DOCKER_REGISTRY -u "{{ secrets.ACR_USERNAME }}" --password-stdin
       
       - name: Checkout Repository
         run: |
