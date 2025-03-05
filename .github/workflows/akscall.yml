@@ -14,3 +14,5 @@ jobs:
       kubernetesCluster: "petclinic-aks"
       kubernetesNamespace: "kube-system"
       azureSubscription: "208b0fcb-4e22-483d-a26c-81f93469a453"
+    secrets:
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
