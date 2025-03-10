@@ -3,7 +3,7 @@ name: Build and Push to Azure Container Registry
 on:
   push:
     branches:
-      - NA
+      - stage
 
 jobs:
   clone-repo:
